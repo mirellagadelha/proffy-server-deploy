@@ -14,4 +14,12 @@ export class ConnectionsService {
   async totalConnections(): Promise<number>{
     return await this.connectionsRepository.totalConnections();
   }
+
+  async createConnection(user_id: number): Promise<void>{
+    const createConnection = this.connectionsRepository.create({
+      user_id
+    });
+
+    await this.connectionsRepository.save(createConnection);
+  }
 }
