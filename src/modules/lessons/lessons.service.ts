@@ -13,6 +13,7 @@ import { CreateLessonDto } from './dto/create-lesson.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { ScheduleLessonDto } from './dto/schedule-lesson.dto';
 import convertHourToMinutes from 'src/utils/convertHourToMinutes';
+import { GetLessonsFilterDto } from './dto/get-lessons-filter.dto';
 
 @Injectable()
 export class LessonsService {
@@ -26,6 +27,9 @@ export class LessonsService {
     @InjectRepository(LessonSchedule)
     private lessonScheduleRepository: Repository<LessonSchedule>,
   ){}
+  async getLessons(getLessonsFilterDto: GetLessonsFilterDto): Promise<Lesson[]>{
+    return this.lessonRepository.getLessons(getLessonsFilterDto);
+  }
 
   async createLesson(
     createLessonDto: CreateLessonDto, 
